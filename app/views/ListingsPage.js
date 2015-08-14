@@ -6,19 +6,11 @@ var Backbone  = require("../../shims/backbone");
 
 var getScriptData = require("../../lib/get-script-data");
 
-var Models = {
-  field_of_study: require("../../../models/FieldOfStudy")
-};
-
 var Views = {
   ListingsPageFilters: require("./ListingsPageFilters"),
   ListingsPageListings: require("./ListingsPageListings"),
   ListingsPageFiltersToggle: require("./ListingsPageFiltersToggle"),
-  NoResults: require("./NoResults"),
-  items: {
-    field_of_study_item: require("../../field_of_study/FieldOfStudyProgramExplorerTeaserView"),
-    search_response_item: require("../../search_response/SearchResponseProgramExplorerTeaserView")
-  }
+  NoResults: require("./NoResults")
 };
 
 /**
@@ -45,13 +37,23 @@ module.exports = Backbone.View.extend({
   },
 
   /**
-   * Initialize a listings page. When instantiating, you must
+   * Initialize a listings page. When instantiating, pass
+   * in some things:
+   * {
+   *   filters: $(".filters"),   // optional. Defaults to $(".filters")
+   *   listings: $(".obejcts"),  // optional. Defaults to $(".obejcts")
+   *   models: {},               // required. Object models, matching object types
+   *   views: {}                 // required. Object views, matching object types
+   * }
+   *
    * pass two divs into the view (filters and listings) if
    * they are different than the defaults:
    *
    * new Views.ListingsPage({
    * 	filters: $(".filters"),
-   * 	listings: $(".objects")
+   * 	listings: $(".objects"),
+   * 	models: {}
+   * 	views: {}
    * });
    *
    * Inside of the filters div, there must be a <script> object with
@@ -67,6 +69,9 @@ module.exports = Backbone.View.extend({
   initialize: function (options) {
 
     options = options || {};
+
+    this.models = options.models;
+    this.views = options.views;
 
     // save off a copy of the events object to scope the vent object
     // example of why: there are filters on the events page and in
@@ -110,11 +115,11 @@ module.exports = Backbone.View.extend({
       var modelName = data.type;
       var viewName = data.type + "_item";
 
-      if (!Models[modelName] || !Views.items[viewName]) return;
+      if (!this.models[modelName] || !this.views[viewName]) return;
 
-      var model = new Models[modelName](data);
+      var model = new this.models[modelName](data);
 
-      new Views.items[viewName]({
+      new this.views[viewName]({
         el: item,
         model: model
       });
