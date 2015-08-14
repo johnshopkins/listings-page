@@ -1,0 +1,17 @@
+<div class="form-field <%= slug %>">
+
+  <input type="checkbox" value=".<%= slug %>" id="<%= slug %>-<%= uniqueId %>" <% if (checked) { %>checked="checked"<% } %>>
+  <label for="<%= slug %>-<%= uniqueId %>"><%= name %></label>
+
+  <% if (parentElement) { %><i class="fa fa-fw fa-plus-square-o"></i><% } %>
+
+  <% if (typeof short_description !== "undefined") { %>
+
+    <div class="info">
+      <i class="fa fa-fw fa-info-circle"></i>
+      <div class="info-text"><%= short_description %></div>
+    </div>
+
+  <% } %>
+
+</div>
