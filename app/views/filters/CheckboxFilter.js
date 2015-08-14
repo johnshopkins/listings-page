@@ -169,6 +169,9 @@ var CheckboxFilter = Views.Filter.extend({
       // active .parent.child filter
       this.vent.trigger("filters:add", this.group, this.parentView.input.val() + this.input.val());
 
+      // deactivate .parent filter
+      this.vent.trigger("filters:remove", this.group, this.parentView.input.val());
+
     } else {
 
       // parent filter
@@ -198,6 +201,16 @@ var CheckboxFilter = Views.Filter.extend({
 
         // child filter
 
+
+        // parent is still checked. if thre are no active siblingsa, activate .parent class
+
+        var siblings = this.$el.siblings(".filter");
+        var checkedSiblings = siblings.find("input:checked").length;
+
+        if (!checkedSiblings) this.vent.trigger("filters:add", this.group, this.parentView.input.val());
+
+
+        // deactivate .parent.child
         this.vent.trigger("filters:remove", this.group, this.parentView.input.val() + this.input.val());
 
     } else {
