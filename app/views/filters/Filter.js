@@ -1,9 +1,8 @@
 /* global require: false */
 /* global module: false */
-/* global module: false */
 
-var $ = require("../../../../../shims/jquery");
-var Backbone  = require("../../../../../shims/backbone");
+var $ = require("../../../shims/jquery");
+var Backbone  = require("../../../shims/backbone");
 
 /**
  * Views.Filter

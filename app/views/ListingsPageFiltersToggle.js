@@ -2,10 +2,10 @@
 /* global module: false */
 /* global vent: false */
 
-var $ = require("../../../../shims/jquery");
-var Backbone  = require("../../../../shims/backbone");
+var $ = require("../../shims/jquery");
+var Backbone  = require("../../shims/backbone");
 
-var templates = { toggle: require("../../../../templates/pages/listings/filters/toggle.html")}
+var templates = { toggle: require("../../templates/pages/listings/filters/toggle.html")}
 
 /**
  * Views.ListingsPageFilter

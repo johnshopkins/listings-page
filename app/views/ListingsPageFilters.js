@@ -2,8 +2,8 @@
 /* global module: false */
 /* global vent: false */
 
-var $ = require("../../../../shims/jquery");
-var Backbone  = require("../../../../shims/backbone");
+var $ = require("../../shims/jquery");
+var Backbone  = require("../../shims/backbone");
 
 var Views = {
   checkbox: require("./filters/CheckboxFilterSet"),

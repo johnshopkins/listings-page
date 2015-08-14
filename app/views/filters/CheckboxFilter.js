@@ -1,12 +1,12 @@
 /* global require: false */
 /* global module: false */
 
-var $ = require("../../../../../shims/jquery");
-var Backbone  = require("../../../../../shims/backbone");
+var $ = require("../../../shims/jquery");
+var Backbone  = require("../../../shims/backbone");
 
 var Views = { Filter: require("./Filter") };
 
-var templates = { checkbox: require("../../../../../templates/pages/listings/filters/checkbox.html") };
+var templates = { checkbox: require("../../../templates/filters/checkbox.html") };
 
 
 /**

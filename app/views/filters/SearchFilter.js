@@ -1,17 +1,17 @@
 /* global require: false */
 /* global module: false */
 
-var $ = require("../../../../../shims/jquery");
-var Backbone  = require("../../../../../shims/backbone");
+var $ = require("../../../shims/jquery");
+var Backbone  = require("../../../shims/backbone");
 
-var Elasticsearch = require("../../../../../lib/elasticsearch");
-var exploreQuery = require("../../../../../lib/explore-query");
-var processResults = require("../../../../../lib/elasticsearch-process-results");
-var analytics = require("../../../../../lib/analytics");
+var Elasticsearch = require("../../../lib/elasticsearch");
+var exploreQuery = require("../../../lib/explore-query");
+var processResults = require("../../../lib/elasticsearch-process-results");
+var analytics = require("../../../lib/analytics");
 
 var Views = { Filter: require("./Filter") };
 
-var templates = { search: require("../../../../../templates/pages/listings/filters/search.html") };
+var templates = { search: require("../../../templates/filters/search.html") };
 
 
 /**

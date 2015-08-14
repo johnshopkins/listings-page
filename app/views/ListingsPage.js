@@ -1,10 +1,10 @@
 /* global require: false */
 /* global module: false */
 
-var $ = require("../../../../shims/jquery");
-var Backbone  = require("../../../../shims/backbone");
+var $ = require("../../shims/jquery");
+var Backbone  = require("../../shims/backbone");
 
-var getScriptData = require("../../../../lib/get-script-data");
+var getScriptData = require("../../lib/get-script-data");
 
 var Models = {
   field_of_study: require("../../../models/FieldOfStudy")
