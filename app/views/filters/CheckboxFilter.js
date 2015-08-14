@@ -194,11 +194,17 @@ var CheckboxFilter = Views.Filter.extend({
       // deactivate children
       _.each(this.childViews, this.deactivateChild.bind(this));
 
-    } else  {
+    } else if (this.parentView) {
 
         // child filter
 
         this.vent.trigger("filters:remove", this.group, this.parentView.input.val() + this.input.val());
+
+    } else {
+
+      // filter with no parents or children; a single filter you could say
+
+      this.vent.trigger("filters:remove", this.group, this.input.val());
 
     }
 
