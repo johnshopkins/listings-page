@@ -26,13 +26,13 @@ var CheckboxFilter = Views.Filter.extend({
     this.childViews = [];
 
     // add icon click event
-    this.events["click .fa"] = "iconClick";
+    this.events["click .toggle-expand"] = "iconClick";
 
   },
 
   iconClick: function (e) {
 
-    this.icon.toggleClass("fa-minus-square-o fa-plus-square-o");
+    this.toggleIcon.toggleClass("fa-minus-square-o fa-plus-square-o");
     this.childFilters.toggleClass("open");
 
   },
@@ -116,7 +116,7 @@ var CheckboxFilter = Views.Filter.extend({
       // create child filter views
 
       // save off icon for later toggline
-      this.icon = this.$el.find(".fa");
+      this.toggleIcon = this.$el.find(".toggle-expand");
 
       // create .child-filters div to store filters in
       this.childFilters = $("<div />").addClass("child-filters");

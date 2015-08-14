@@ -1,5 +1,5 @@
 <div class="form-field <%= slug %>">
   <input type="checkbox" value=".<%= slug %>" id="<%= slug %>-<%= uniqueId %>" <% if (checked) { %>checked="checked"<% } %>>
   <label for="<%= slug %>-<%= uniqueId %>"><% if (typeof icon !== "undefined") { %><i class="fa <%= icon %>"></i> <% } %><%= name %></label>
-  <% if (parentElement) { %><i class="fa fa-plus-square-o"></i><% } %>
+  <% if (parentElement) { %><i class="fa fa-plus-square-o toggle-expand"></i><% } %>
 </div>
