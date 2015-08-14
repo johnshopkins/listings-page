@@ -33,7 +33,8 @@ module.exports = Views.Filter.extend({
 
     // add icon click event
     this.events["keydown input"] = "onKeyDown";
-    this.events["click .clear-button"] = "deactivateFilter";
+    this.events["click .clear-button"] = "clearKeyword";
+    this.events["click .submit-button"] = "searchByKeyword";
 
   },
 
@@ -60,6 +61,13 @@ module.exports = Views.Filter.extend({
 
     // keyword searched for
     this.searchByKeyword();
+
+  },
+
+  clearKeyword: function () {
+
+    this.input.val("");
+    this.deactivateFilter();
 
   },
 
