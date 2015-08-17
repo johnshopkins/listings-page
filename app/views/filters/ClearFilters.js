@@ -13,7 +13,7 @@ var templates = { clear: require("../../../templates/filters/clear-button.html")
 
 module.exports = Backbone.View.extend({
 
-  className: "clear-button",
+  className: "clear",
   template: templates.clear,
 
   events: {
