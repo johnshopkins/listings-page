@@ -45,7 +45,7 @@ module.exports = Views.Filter.extend({
 
     if (this.hashFilters.length) {
       var q = this.hashFilters[0].replace("search-", "").replace("-", " ");
-      this.input.val(q);
+      this.input.val(q)
       this.searchByKeyword();
     }
 
@@ -120,7 +120,7 @@ module.exports = Views.Filter.extend({
     this.$el.addClass("clear");
 
     // add filter
-    this.vent.trigger("filters:add", this.group, "." + this.filter);
+    this.vent.trigger("filters:add", this.group, "." + this.filter, this.filter);
 
   },
 
@@ -133,7 +133,7 @@ module.exports = Views.Filter.extend({
     this.vent.trigger("isotope:sort", "name");
 
     // remove this filter
-    this.vent.trigger("filters:remove", this.group, "." + this.filter, true);
+    this.vent.trigger("filters:remove", this.group, "." + this.filter, this.filter);
 
     // remove class and relevancy data from items
     var self = this;
