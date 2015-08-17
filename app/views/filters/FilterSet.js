@@ -4,6 +4,10 @@
 var $ = require("../../../shims/jquery");
 var Backbone  = require("../../../shims/backbone");
 
+var Views = {
+  ClearFilters: require("./ClearFilters")
+};
+
 /**
  * Views.FilterSet
  *
@@ -21,6 +25,11 @@ module.exports = Backbone.View.extend({
     this.group = this.label.toLowerCase().replace(" ", "");
     this.hashFilters = options.hashFilters[this.group] ? options.hashFilters[this.group].split(",") : [];
 
+    // array to hold child views, if any
+    this.views = [];
+
+    // view that controls the "clear" button
+    this.clearView = new Views.ClearFilters({ group: this.group });
   },
 
   createView: function (filter) {
@@ -50,6 +59,7 @@ module.exports = Backbone.View.extend({
     if (this.collection) {
 
       this.collection.each(this.append, this);
+      this.$el.append(this.clearView.render().el);
 
     } else if (this.model) {
 
