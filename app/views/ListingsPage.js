@@ -115,11 +115,11 @@ module.exports = Backbone.View.extend({
       var modelName = data.type;
       var viewName = data.type + "_item";
 
-      if (!this.models[modelName] || !this.views[viewName]) return;
+      if (!self.models[modelName] || !self.views[viewName]) return;
 
-      var model = new this.models[modelName](data);
+      var model = new self.models[modelName](data);
 
-      new this.views[viewName]({
+      new self.views[viewName]({
         el: item,
         model: model
       });
