@@ -1,5 +1,5 @@
 {
-  "name": "listings-page-backbone",
+  "name": "listings-page",
   "version": "0.0.1",
   "description": "The Backbone framework that provides the base for filterable listings.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:johnshopkins/listings-page-backbone.git"
+    "url": "git@github.com:johnshopkins/listings-page.git"
   },
   "author": [
     "Jen Wachter"
