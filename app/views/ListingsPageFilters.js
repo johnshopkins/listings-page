@@ -62,6 +62,7 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.vent, "filters:toggle", this.toggleDisplay);
     this.listenTo(this.vent, "filters:add", this.addFilter);
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
+    this.listenTo(this.vent, "filters:removegroup", this.removeFilterGroup);
 
   },
 
@@ -204,6 +205,15 @@ module.exports = Backbone.View.extend({
     if (index !== -1) {
       this.slugs[group].splice(index, 1);
     }
+
+    this.resetFilters();
+
+  },
+
+  removeFilterGroup: function (group) {
+
+    this.filters[group] = [];
+    this.slugs[group] = [];
 
     this.resetFilters();
 

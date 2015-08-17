@@ -211,6 +211,28 @@ var CheckboxFilter = Views.Filter.extend({
 
     }
 
+  },
+
+  /**
+   * Triggered when a filter set's clear button
+   * is clicked. Deactivates all filters in the set.
+   */
+  removeFromFilters: function () {
+
+    // check the input
+    this.input.prop("checked", false);
+
+    // deactivate the filter
+    this.deactivateFilter();
+
+    // deactivate all children
+    _.each(this.childViews, function (view) {
+
+      view.input.prop("checked", false);
+      view.deactivateFilter();
+
+    });
+
   }
 
 });

@@ -30,6 +30,8 @@ module.exports = Backbone.View.extend({
 
     // view that controls the "clear" button
     this.clearView = new Views.ClearFilters({ group: this.group });
+    this.listenTo(this.clearView, "filters:removeset", this.deactivateSet);
+
   },
 
   createView: function (filter) {
@@ -48,6 +50,19 @@ module.exports = Backbone.View.extend({
 
     var view = this.createView(filter);
     this.$el.append(view.render().el);
+
+    this.views.push(view);
+
+  },
+
+  /**
+   * Deactivate all filters in a set
+   */
+  deactivateSet: function () {
+
+    _.each(this.views, function (view) {
+      view.removeFromFilters();
+    });
 
   },
 

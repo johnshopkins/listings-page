@@ -32,6 +32,12 @@ module.exports = Backbone.View.extend({
 
   },
 
+  removeFromFilters: function () {
+
+
+
+  },
+
   render: function () {
 
     this.model.set("uniqueId", this.cid);
