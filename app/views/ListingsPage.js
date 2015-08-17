@@ -140,7 +140,8 @@ module.exports = Backbone.View.extend({
     var filterData = getScriptData(this.filtersContainer);
     this.filtersForm = new this.filtersView({
       data: filterData,
-      vent: this.vent
+      vent: this.vent,
+      filtersContainer: this.filtersContainer
     });
 
     // add the filters and toggle to the filters container
@@ -179,7 +180,7 @@ module.exports = Backbone.View.extend({
 
     // if there are results, return
     if (filteredItems.length > 0) {
-      this.noResultsView.hide();
+      this.noResultsView.hide()
       return;
     }
 

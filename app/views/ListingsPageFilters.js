@@ -29,6 +29,7 @@ module.exports = Backbone.View.extend({
 
     this.data = options.data;
     this.vent = options.vent;
+    this.filtersContainer = options.filtersContainer;
 
     this.initQueryString();
     this.initHashBang();
@@ -292,14 +293,14 @@ module.exports = Backbone.View.extend({
         }
 
         // apply filter selectors to combo filters for next group
-        comboFilters = filterSelectors;
+        comboFilters = filterSelectors
 
       }
 
-      i++;
+      i++
     }
 
-    return comboFilters;
+    return comboFilters
   },
 
   render: function () {
