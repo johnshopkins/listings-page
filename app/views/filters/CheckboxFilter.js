@@ -80,11 +80,10 @@ var CheckboxFilter = Views.Filter.extend({
 
   setCheckedAttr: function () {
 
-    var slug = this.model.get("slug");
     var checked = false;
 
     // if there are init filters AND this checkbox is in them
-    if (this.hashFilters.length && $.inArray(slug, this.hashFilters) > -1) {
+    if (this.hashFilters.length && $.inArray(this.slug, this.hashFilters) > -1) {
       checked = true;
     }
 
@@ -99,6 +98,8 @@ var CheckboxFilter = Views.Filter.extend({
   },
 
   render: function () {
+
+    this.slug = this.model.get("slug");
 
     this.setParentElementAttr();
     this.setCheckedAttr();
@@ -165,19 +166,19 @@ var CheckboxFilter = Views.Filter.extend({
     if (this.isChildFilter()) {
 
       // activate .parent.child filter
-      this.vent.trigger("filters:add", this.group, this.parentView.input.val() + this.input.val());
+      this.vent.trigger("filters:add", this.group, this.parentView.input.val() + this.input.val(), this.slug);
 
       // deactivate .parent filter
-      this.vent.trigger("filters:remove", this.group, this.parentView.input.val());
+      this.vent.trigger("filters:remove", this.group, this.parentView.input.val(), this.parentView.slug);
 
     } else {
 
-      // activate .parent filter if no children are selected
+      // activate filter if no children are selected
 
       var children = this.$el.find(".child-filters");
       var checkedChildren = children.find("input:checked").length;
 
-      if (!checkedChildren) this.vent.trigger("filters:add", this.group, this.input.val());
+      if (!checkedChildren) this.vent.trigger("filters:add", this.group, this.input.val(), this.slug);
 
     }
 
@@ -190,32 +191,25 @@ var CheckboxFilter = Views.Filter.extend({
     if (this.isChildFilter()) {
 
       // remove .parent.child filter
-      this.vent.trigger("filters:remove", this.group, this.parentView.input.val() + this.input.val());
+      this.vent.trigger("filters:remove", this.group, this.parentView.input.val() + this.input.val(), this.slug);
 
-      // if no other sibling is checked and the parent is checked, add .parent back
+
+      // if no other siblings are checked and the parent is checked, add .parent back
 
       var siblings = this.$el.siblings(".filter");
       var checkedSiblings = siblings.find("input:checked").length;
       var parent = this.parentView.input;
 
       if (!checkedSiblings && parent.prop("checked")) {
-        this.vent.trigger("filters:add", this.group, this.parentView.input.val());
+        this.vent.trigger("filters:add", this.group, this.parentView.input.val(), this.parentView.slug);
       }
 
     } else {
 
       // remove this filter
-      this.vent.trigger("filters:remove", this.group, this.input.val());
+      this.vent.trigger("filters:remove", this.group, this.input.val(), this.slug);
 
     }
-
-  },
-
-  deactivateChild: function (child) {
-
-    child.input.removeProp("checked");
-    child.$el.removeClass("active");
-    this.vent.trigger("filters:remove", this.group, this.input.val() + child.input.val());
 
   }
 

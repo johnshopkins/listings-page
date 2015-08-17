@@ -36,6 +36,9 @@ module.exports = Backbone.View.extend({
     // active isotope filters
     this.filters = {};
 
+    // hash slugs
+    this.slugs = {};
+
     var self = this;
 
     this.filterViews = $.map(this.data, function (data, label) {
@@ -155,17 +158,26 @@ module.exports = Backbone.View.extend({
    * Activate a filter in a group of filters.
    * @param {string}  group      Group name
    * @param {string}  filter     Filter class to activate (ex: .math)
+   * @param {string}  slug       Slug of filter that triggered the remove action
+   *                             Used to create hash
    */
-  addFilter: function (group, filter) {
+  addFilter: function (group, filter, slug) {
 
     // a filter from this group hadn't been selected yet; init array
     if (!this.filters[group]) this.filters[group] = [];
 
-    // Add filter if it's not already in the array. This can happen
-    // if a filter is checked and then "all" is checked
-
+    // Add filter if it's not already in the array
     if ($.inArray(filter, this.filters[group]) === -1) {
       this.filters[group].push(filter);
+    }
+
+
+    // a filter from this group hadn't been selected yet; init slugs array
+    if (!this.slugs[group]) this.slugs[group] = [];
+
+    // add slug if it's not already present
+    if ($.inArray(slug, this.slugs[group]) === -1) {
+      this.slugs[group].push(slug);
     }
 
     this.resetFilters();
@@ -176,14 +188,21 @@ module.exports = Backbone.View.extend({
    * Remove a filter in a group of filters.
    * @param {string}  group      Group name
    * @param {string}  filter     Filter class to activate (ex: .math)
+   * @param {string}  slug       Slug of filter that triggered the remove action
+   *                             Used to create hash
    */
-  removeFilter: function (group, filter) {
+  removeFilter: function (group, filter, slug) {
 
     // remove filter
     var index = $.inArray(filter, this.filters[group]);
-
     if (index !== -1) {
       this.filters[group].splice(index, 1);
+    }
+
+    // remove slug
+    index = $.inArray(slug, this.slugs[group]);
+    if (index !== -1) {
+      this.slugs[group].splice(index, 1);
     }
 
     this.resetFilters();
@@ -201,28 +220,17 @@ module.exports = Backbone.View.extend({
 
   },
 
-  getHashFilters: function () {
+  getHashSlugs: function () {
 
-    var hash = [];
+    var hashSlugs = [];
 
-    var self = this;
-    $.each(this.filters, function (group, filters) {
+    $.each(this.slugs, function (group, slugs) {
 
-      if (filters.length) {
-
-        // there are filters and the fake class is not one of them
-
-        filters = $.map(filters, function (filter) {
-          return filter.replace(".", "");
-        });
-
-        hash.push(group + "=" + filters.join(","));
-
-      }
+      if (slugs.length) hashSlugs.push(group + "=" + slugs.join(","));
 
     });
 
-    return hash;
+    return hashSlugs;
 
   },
 
@@ -232,8 +240,8 @@ module.exports = Backbone.View.extend({
    */
    createHash: function () {
 
-     var hash = this.getHashFilters();
-     window.location.hash = "#!/" + hash.join("&");
+     var slugs = this.getHashSlugs();
+     window.location.hash = "#!/" + slugs.join("&");
 
    },
 
