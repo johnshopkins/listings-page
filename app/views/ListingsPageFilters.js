@@ -292,14 +292,14 @@ module.exports = Backbone.View.extend({
         }
 
         // apply filter selectors to combo filters for next group
-        comboFilters = filterSelectors
+        comboFilters = filterSelectors;
 
       }
 
-      i++
+      i++;
     }
 
-    return comboFilters
+    return comboFilters;
   },
 
   render: function () {

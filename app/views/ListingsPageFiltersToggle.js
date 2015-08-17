@@ -5,7 +5,7 @@
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
 
-var templates = { toggle: require("../../templates/filters/toggle.html")}
+var templates = { toggle: require("../../templates/filters/toggle.html") };
 
 /**
  * Views.ListingsPageFilter
@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
   initialize: function (options) {
 
     this.vent = options.vent;
-    this.listenTo(this.vent, "filters:toggle", this.toggleDisplay)
+    this.listenTo(this.vent, "filters:toggle", this.toggleDisplay);
 
   },
 

@@ -179,7 +179,7 @@ module.exports = Backbone.View.extend({
 
     // if there are results, return
     if (filteredItems.length > 0) {
-      this.noResultsView.hide()
+      this.noResultsView.hide();
       return;
     }
 
