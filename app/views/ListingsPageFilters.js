@@ -41,19 +41,18 @@ module.exports = Backbone.View.extend({
     this.slugs = {};
 
     var self = this;
-
     this.filterViews = $.map(this.data, function (data, label) {
 
       var type = data.type;
 
       if (Views[type]) {
 
-        if (type === "checkbox") {
-          return self.createCheckbox(data, label);
-        }
+        var functionName = "create" + self.capitalizeFirstLetter(type);
 
-        if (type === "search") {
-          return self.createSearch(data, label);
+        if (self[functionName]) {
+          return self[functionName].call(self, data, label);
+        } else {
+          return null;
         }
 
       }
@@ -65,6 +64,10 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
     this.listenTo(this.vent, "filters:removegroup", this.removeFilterGroup);
 
+  },
+
+  capitalizeFirstLetter: function (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   },
 
   /**
