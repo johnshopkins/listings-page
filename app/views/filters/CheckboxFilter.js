@@ -28,12 +28,37 @@ var CheckboxFilter = Views.Filter.extend({
     // add icon click event
     this.events["click .toggle-expand"] = "iconClick";
 
+    if (this.model.get("tabIndex") === "label") {
+      this.events["click label"] = "labelClick";
+    }
+
   },
 
   iconClick: function (e) {
 
     this.toggleIcon.toggleClass("fa-minus-square-o fa-plus-square-o");
     this.childFilters.toggleClass("open");
+
+  },
+
+  /**
+   * Essentially the same thing as onChange,
+   * but this function reacts to the clicking
+   * (or tabbing to and activating) of the label.
+   */
+  labelClick: function (e) {
+
+    e.preventDefault();
+
+    var checked = this.input.prop("checked");
+
+    if (checked) {
+      this.input.prop("checked", false);
+      this.deactivateFilter();
+    } else {
+      this.input.prop("checked", true);
+      this.activateFilter();
+    }
 
   },
 
