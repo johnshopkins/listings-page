@@ -46,16 +46,12 @@ module.exports = Backbone.View.extend({
 
       var type = data.type;
 
-      if (Views[type]) {
+      var functionName = "create" + self.capitalizeFirstLetter(type);
 
-        var functionName = "create" + self.capitalizeFirstLetter(type);
-
-        if (self[functionName]) {
-          return self[functionName].call(self, data, label);
-        } else {
-          return null;
-        }
-
+      if (self[functionName]) {
+        return self[functionName].call(self, data, label);
+      } else {
+        return null;
       }
 
     });
