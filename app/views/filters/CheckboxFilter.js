@@ -36,6 +36,8 @@ var CheckboxFilter = Views.Filter.extend({
 
   iconClick: function (e) {
 
+    e.preventDefault();
+
     this.toggleIcon.toggleClass("fa-minus-square-o fa-plus-square-o");
     this.childFilters.toggleClass("open");
 
