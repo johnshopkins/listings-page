@@ -49,6 +49,7 @@ var CheckboxFilter = Views.Filter.extend({
   labelClick: function (e) {
 
     e.preventDefault();
+    e.stopPropagation();
 
     var checked = this.input.prop("checked");
 
