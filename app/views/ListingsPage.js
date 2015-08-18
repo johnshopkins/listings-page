@@ -140,14 +140,14 @@ module.exports = Backbone.View.extend({
     this.listingsContainer.isotope(this.isotopeOptions);
     this.listingsContainer.isotope("on", "arrangeComplete", this.onArrangeComplete.bind(this));
 
+    // add the filters and toggle to the filters container
+    this.filtersContainer
+      .append(this.filtersToggle.render().el)
+      .append(this.filtersForm.render().el);
+
   },
 
   render: function () {
-
-    // init isotope when all images are loaded
-    this.listingsContainer
-      .imagesLoaded()
-      .done(this.initIsotope.bind(this));
 
     // create filters view
     var filterData = getScriptData(this.filtersContainer);
@@ -158,10 +158,10 @@ module.exports = Backbone.View.extend({
       tabIndex: this.tabIndex
     });
 
-    // add the filters and toggle to the filters container
-    this.filtersContainer
-      .append(this.filtersToggle.render().el)
-      .append(this.filtersForm.render().el);
+    // init isotope when all images are loaded
+    this.listingsContainer
+      .imagesLoaded()
+      .done(this.initIsotope.bind(this));
 
   },
 
