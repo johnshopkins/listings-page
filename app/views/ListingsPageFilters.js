@@ -30,6 +30,7 @@ module.exports = Backbone.View.extend({
     this.data = options.data;
     this.vent = options.vent;
     this.filtersContainer = options.filtersContainer;
+    this.tabIndex = options.tabIndex;
 
     this.initQueryString();
     this.initHashBang();
@@ -128,7 +129,9 @@ module.exports = Backbone.View.extend({
   createCheckbox: function (data, label) {
 
     // convert each checkbox data to a backbone model
+    var self = this;
     var models = $.map(data.options, function (attributes, id) {
+      attributes.tabIndex = self.tabIndex.checkbox || "input";
       return new Backbone.Model(attributes);
     });
 
@@ -143,6 +146,8 @@ module.exports = Backbone.View.extend({
   },
 
   createSearch: function (data, label) {
+
+    data.tabIndex = this.tabIndex.search || "input";
 
     return new Views.search({
       label: label,
@@ -296,14 +301,14 @@ module.exports = Backbone.View.extend({
         }
 
         // apply filter selectors to combo filters for next group
-        comboFilters = filterSelectors
+        comboFilters = filterSelectors;
 
       }
 
-      i++
+      i++;
     }
 
-    return comboFilters
+    return comboFilters;
   },
 
   render: function () {

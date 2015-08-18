@@ -130,6 +130,7 @@ var CheckboxFilter = Views.Filter.extend({
       $.each(this.children, function (id, child) {
 
         child.parentElement = false;
+        child.tabIndex = self.model.get("tabIndex");
 
         var model = new Backbone.Model(child);
         var viewName = self.getChildView();

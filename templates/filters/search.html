@@ -1,7 +1,7 @@
 <div class="search-box force">
   <input type="hidden" name="c" value="<%= category %>">
-  <label for="search-<%= uniqueId %>">Search</label>
-  <input id="search-<%= uniqueId %>" class="column" type="text" name="q" value="" autocomplete="off">
+  <% if (tabIndex === "label") { %><a href="#"><% } %><label for="search-<%= uniqueId %>">Search</label><% if (tabIndex === "label") { %></a><% } %>
+  <input id="search-<%= uniqueId %>" class="column" type="text" name="q" value="" autocomplete="off" <% if (tabIndex === "label") { %>tabIndex="-1"<% } %>>
   <button type="button" class="column submit-button"><i class="fa fa-fw fa-compass"></i><span class="text">explore</span></button>
   <button type="button" class="column clear-button"><i class="fa fa-fw fa-eraser"></i><span class="text">clear</span></button>
 </div>
