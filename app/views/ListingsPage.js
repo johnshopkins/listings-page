@@ -4,6 +4,7 @@
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
 
+var imagesloaded = require("imagesloaded");
 var getScriptData = require("../../lib/get-script-data");
 
 var Views = {
@@ -35,6 +36,8 @@ module.exports = Backbone.View.extend({
     },
     sortBy: "name"
   },
+
+  imagesloaded: false,
 
   /**
    * Initialize a listings page. When instantiating, pass
@@ -131,11 +134,20 @@ module.exports = Backbone.View.extend({
 
   },
 
+  initIsotope: function () {
+
+    this.imagesloaded = true;
+    this.listingsContainer.isotope(this.isotopeOptions);
+    this.listingsContainer.isotope("on", "arrangeComplete", this.onArrangeComplete.bind(this));
+
+  },
 
   render: function () {
 
-    // init isotope
-    this.listingsContainer.isotope(this.isotopeOptions);
+    // init isotope when all images are loaded
+    this.listingsContainer
+      .imagesLoaded()
+      .done(this.initIsotope.bind(this));
 
     // create filters view
     var filterData = getScriptData(this.filtersContainer);
@@ -151,11 +163,12 @@ module.exports = Backbone.View.extend({
       .append(this.filtersToggle.render().el)
       .append(this.filtersForm.render().el);
 
-    this.listingsContainer.isotope("on", "arrangeComplete", this.onArrangeComplete.bind(this));
-
   },
 
   resetFilters: function (filters) {
+
+    // do not run isotope unless all images have loaded
+    if (!this.imagesloaded) return;
 
     filters = filters || [];
     this.listingsContainer.isotope({ filter: filters.join(", ") });
