@@ -75,7 +75,7 @@ module.exports = Backbone.View.extend({
 
     this.models = options.models;
     this.views = options.views;
-    this.tabIndex = options.tabIndex || "input";
+    this.tabIndex = options.tabIndex || {};
 
     // save off a copy of the events object to scope the vent object
     // example of why: there are filters on the events page and in
