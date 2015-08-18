@@ -141,8 +141,8 @@ var CheckboxFilter = Views.Filter.extend({
 
       // create child filter views
 
-      // save off icon for later toggline
-      this.toggleIcon = this.$el.find(".toggle-expand");
+      // save off icon for later toggling
+      this.toggleIcon = this.$el.find(".toggle-expand i");
 
       // create .child-filters div to store filters in
       this.childFilters = $("<div />").addClass("child-filters");
