@@ -1,5 +1,6 @@
 /* global require: false */
 /* global module: false */
+/* global modernBrowser: false */
 
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
@@ -148,6 +149,9 @@ module.exports = Backbone.View.extend({
   },
 
   render: function () {
+
+    // do not render filters or init isotope if this is not a modern browser
+    if (typeof modernBrowser !== "undefined" && !modernBrowser) return;
 
     // create filters view
     var filterData = getScriptData(this.filtersContainer);
