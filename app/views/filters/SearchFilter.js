@@ -82,6 +82,9 @@ module.exports = Views.Filter.extend({
 
     var q = this.input.val();
 
+    // remove focus from input to aid in "focus" envent
+    this.input.blur();
+
     if (!q) return;
 
     this.filter = "search-" + this.createDomFriendlyKeyword(q);
