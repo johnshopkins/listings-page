@@ -125,7 +125,7 @@ module.exports = Views.Filter.extend({
     });
 
     // Send event to google
-    if (env == "production") this.sendRequestToGoogle(q);
+    this.sendRequestToGoogle(q);
 
   },
 
