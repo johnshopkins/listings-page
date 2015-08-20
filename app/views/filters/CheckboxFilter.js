@@ -63,8 +63,6 @@ var CheckboxFilter = Views.Filter.extend({
       this.activateFilter();
     }
 
-    this.track();
-
   },
 
   onChange: function (e) {
@@ -81,8 +79,6 @@ var CheckboxFilter = Views.Filter.extend({
     } else {
       this.deactivateFilter();
     }
-
-    this.track();
 
   },
 
@@ -218,6 +214,8 @@ var CheckboxFilter = Views.Filter.extend({
       if (!checkedChildren) this.vent.trigger("filters:add", this.group, this.input.val(), this.slug);
 
     }
+
+    this.track();
 
   },
 
