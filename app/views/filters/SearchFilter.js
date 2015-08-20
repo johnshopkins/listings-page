@@ -33,6 +33,7 @@ module.exports = Views.Filter.extend({
 
     // add icon click event
     this.events["keydown input"] = "onKeyDown";
+    this.events["focus input"] = "clearKeyword";
     this.events["click .clear-button"] = "clearKeyword";
     this.events["click .submit-button"] = "searchByKeyword";
 
@@ -53,6 +54,10 @@ module.exports = Views.Filter.extend({
 
   },
 
+  /**
+   * Watch for the pressing of the "enter" key
+   * when a user is typing in the input.
+   */
   onKeyDown: function (e) {
 
     var code = e.charCode ? e.charCode : e.keyCode;
