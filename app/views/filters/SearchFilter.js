@@ -72,7 +72,15 @@ module.exports = Views.Filter.extend({
   clearKeyword: function () {
 
     this.input.val("");
-    this.deactivateFilter();
+
+    /**
+     * Delay deactivating the filter just enough to give
+     * the input the time to clear. If this timeout is not
+     * used, the input doesn't clear until Isotope finishes
+     * its filtering process.
+     */
+    var self = this;
+    setTimeout(this.deactivateFilter.bind(this), 5);
 
   },
 
