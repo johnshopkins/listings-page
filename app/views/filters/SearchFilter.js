@@ -7,7 +7,6 @@ var Backbone  = require("../../../shims/backbone");
 var Elasticsearch = require("../../../lib/elasticsearch");
 var exploreQuery = require("../../../lib/explore-query");
 var processResults = require("../../../lib/elasticsearch-process-results");
-var analytics = require("../../../lib/analytics");
 
 var Views = { Filter: require("./Filter") };
 
@@ -188,10 +187,7 @@ module.exports = Views.Filter.extend({
 
     var url = location.protocol + "//" + location.hostname + path + "?q=" + q + "&c=" + this.model.get("category");
 
-    analytics.trackPageview({
-      page: url,
-      title: "Academics | Johns Hopkins University"
-    });
+    this.vent.trigger("filters:tracksearch", url);
 
   },
 

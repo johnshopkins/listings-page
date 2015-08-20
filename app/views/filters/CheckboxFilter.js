@@ -4,8 +4,6 @@
 var $ = require("../../../shims/jquery");
 var Backbone  = require("../../../shims/backbone");
 
-var analytics = require("../../../lib/analytics");
-
 var Views = { Filter: require("./Filter") };
 
 var templates = { checkbox: require("../../../templates/filters/checkbox.html") };
@@ -90,11 +88,7 @@ var CheckboxFilter = Views.Filter.extend({
 
   track: function () {
 
-    analytics.trackEvent({
-      eventCategory: "Program Explorer",
-      eventAction: "Click filter",
-      eventLabel: this.model.get("name")
-    });
+    this.vent.trigger("filters:trackevent", this.model.get("name"));
 
   },
 

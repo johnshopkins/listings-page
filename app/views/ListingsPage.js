@@ -48,6 +48,7 @@ module.exports = Backbone.View.extend({
    *   listings: $(".obejcts"),  // optional. Defaults to $(".obejcts")
    *   models: {},               // required. Object models, matching object types
    *   views: {}                 // required. Object views, matching object types
+   *   appName: ""               // options. Used for Google Analytics Event tracking as the "event category"
    * }
    *
    * pass two divs into the view (filters and listings) if
@@ -76,6 +77,7 @@ module.exports = Backbone.View.extend({
 
     this.models = options.models;
     this.views = options.views;
+    this.appName = options.appName;
     this.tabIndex = options.tabIndex || {};
 
     // save off a copy of the events object to scope the vent object
@@ -159,7 +161,8 @@ module.exports = Backbone.View.extend({
       data: filterData,
       vent: this.vent,
       filtersContainer: this.filtersContainer,
-      tabIndex: this.tabIndex
+      tabIndex: this.tabIndex,
+      appName : this.appName
     });
 
     // init isotope when all images are loaded

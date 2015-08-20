@@ -5,6 +5,8 @@
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
 
+var analytics = require("../../lib/analytics");
+
 var Views = {
   checkbox: require("./filters/CheckboxFilterSet"),
   search: require("./filters/SearchFilterSet")
@@ -31,6 +33,7 @@ module.exports = Backbone.View.extend({
     this.vent = options.vent;
     this.filtersContainer = options.filtersContainer;
     this.tabIndex = options.tabIndex;
+    this.appName = options.appName;
 
     this.initQueryString();
     this.initHashBang();
@@ -60,6 +63,24 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.vent, "filters:add", this.addFilter);
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
     this.listenTo(this.vent, "filters:removegroup", this.removeFilterGroup);
+    this.listenTo(this.vent, "filters:trackevent", this.trackEvent);
+    this.listenTo(this.vent, "filters:tracksearch", this.trackSearch);
+
+  },
+
+  trackEvent: function (filterName) {
+
+    analytics.trackEvent({
+      eventCategory: this.appName || "Listings",
+      eventAction: "Click filter",
+      eventLabel: filterName
+    });
+
+  },
+
+  trackSearch: function (url) {
+
+    analytics.trackPageview({ page: url });
 
   },
 
