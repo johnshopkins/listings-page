@@ -4,6 +4,8 @@
 var $ = require("../../../shims/jquery");
 var Backbone  = require("../../../shims/backbone");
 
+var analytics = require("../../../lib/analytics");
+
 var Views = { Filter: require("./Filter") };
 
 var templates = { checkbox: require("../../../templates/filters/checkbox.html") };
@@ -63,6 +65,8 @@ var CheckboxFilter = Views.Filter.extend({
       this.activateFilter();
     }
 
+    this.track();
+
   },
 
   onChange: function (e) {
@@ -72,15 +76,25 @@ var CheckboxFilter = Views.Filter.extend({
 
     Views.Filter.prototype.onChange.call(this, e);
 
-    var target = $(e.target);
-
-    var checked = target.prop("checked");
+    var checked = this.input.prop("checked");
 
     if (checked) {
       this.activateFilter();
     } else {
       this.deactivateFilter();
     }
+
+    this.track();
+
+  },
+
+  track: function () {
+
+    analytics.trackEvent({
+      eventCategory: "Program Explorer",
+      eventAction: "Click filter",
+      eventLabel: this.model.get("name")
+    });
 
   },
 
