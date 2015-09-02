@@ -101,6 +101,7 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.vent, "filters:reset", this.resetFilters);
     this.listenTo(this.vent, "isotope:sort", this.resetSort);
     this.listenTo(this.vent, "isotope:insert", this.insert);
+    this.listenTo(this.vent, "isotope:remove", this.remove);
 
     this.initItems(this.render);
 
@@ -217,6 +218,12 @@ module.exports = Backbone.View.extend({
   insert: function (items) {
 
     this.listingsContainer.isotope("insert", items);
+
+  },
+
+  remove: function (items) {
+
+    this.listingsContainer.isotope("remove", items);
 
   },
 
