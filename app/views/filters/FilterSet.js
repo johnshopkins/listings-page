@@ -78,8 +78,7 @@ module.exports = Backbone.View.extend({
 
     } else if (this.model) {
 
-      var view = this.createView(this.model);
-      this.$el.append(view.render().el);
+      this.append(this.model);
 
     }
 
