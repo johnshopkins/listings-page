@@ -4,6 +4,7 @@
 
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
+var _  = require("../../shims/underscore");
 
 var imagesloaded = require("imagesloaded");
 var getScriptData = require("../../lib/get-script-data");
@@ -39,6 +40,8 @@ module.exports = Backbone.View.extend({
   },
 
   imagesloaded: false,
+
+  debounce: 200,
 
   /**
    * Initialize a listings page. When instantiating, pass
@@ -98,7 +101,14 @@ module.exports = Backbone.View.extend({
     this.noResultsView = new Views.NoResults();
     this.listingsContainer.after(this.noResultsView.render().el);
 
-    this.listenTo(this.vent, "filters:reset", this.resetFilters);
+    var self = this;
+    this.listenTo(this.vent, "filters:reset", _.debounce(function (filters) {
+
+      // let all the adding/removing of filters happen before triggering isotope
+      self.resetFilters.call(this, filters);
+
+    }, this.debounce));
+
     this.listenTo(this.vent, "isotope:sort", this.resetSort);
     this.listenTo(this.vent, "isotope:insert", this.insert);
     this.listenTo(this.vent, "isotope:remove", this.remove);
