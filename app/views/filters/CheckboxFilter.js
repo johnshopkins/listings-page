@@ -197,6 +197,7 @@ var CheckboxFilter = Views.Filter.extend({
   activateFilter: function () {
 
     this.$el.addClass("active");
+    this.model.set("checked", true);
 
     if (this.isChildFilter()) {
 
@@ -224,6 +225,7 @@ var CheckboxFilter = Views.Filter.extend({
   deactivateFilter: function () {
 
     this.$el.removeClass("active");
+    this.model.set("checked", false);
 
     if (this.isChildFilter()) {
 
