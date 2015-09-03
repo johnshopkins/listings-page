@@ -23,6 +23,7 @@ var CheckboxFilter = Views.Filter.extend({
     Views.Filter.prototype.initialize.call(this, options);
 
     this.parentView = options.parent;
+    this.useHash = options.useHash;
     this.childViews = [];
 
     // add icon click event
@@ -115,7 +116,7 @@ var CheckboxFilter = Views.Filter.extend({
     var checked = false;
 
     // if there are init filters AND this checkbox is in them
-    if (this.hashFilters.length && $.inArray(this.slug, this.hashFilters) > -1) {
+    if (this.useHash && this.hashFilters.length && $.inArray(this.slug, this.hashFilters) > -1) {
       checked = true;
     }
 
@@ -172,6 +173,7 @@ var CheckboxFilter = Views.Filter.extend({
           group: self.group,
           vent: self.vent,
           hashFilters: self.hashFilters,
+          useHash: self.useHash,
           parent: self
         });
 

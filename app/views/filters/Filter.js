@@ -23,6 +23,7 @@ module.exports = Backbone.View.extend({
     this.vent = options.vent;
     this.group = options.group;
     this.hashFilters = options.hashFilters;
+    this.useHash = options.useHash;
 
   },
 

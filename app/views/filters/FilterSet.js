@@ -24,6 +24,7 @@ module.exports = Backbone.View.extend({
     this.label = options.label;
     this.group = this.label.toLowerCase().replace(" ", "");
     this.hashFilters = options.hashFilters[this.group] ? options.hashFilters[this.group].split(",") : [];
+    this.useHash = options.useHash;
 
     // array to hold child views, if any
     this.views = [];
@@ -41,7 +42,8 @@ module.exports = Backbone.View.extend({
       group: this.group,
       vent: this.vent,
       options: this.options,
-      hashFilters: this.hashFilters
+      hashFilters: this.hashFilters,
+      useHash: this.useHash
     });
 
   },

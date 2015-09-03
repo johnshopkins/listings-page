@@ -34,6 +34,7 @@ module.exports = Backbone.View.extend({
     this.filtersContainer = options.filtersContainer;
     this.tabIndex = options.tabIndex;
     this.appName = options.appName;
+    this.useHash = typeof options.useHash === "undefined" ? true : options.useHash;
 
     this.initQueryString();
     this.initHashBang();
@@ -157,7 +158,8 @@ module.exports = Backbone.View.extend({
       label: label,
       collection: new Backbone.Collection(models),
       vent: this.vent,
-      hashFilters: this.hashFilters
+      hashFilters: this.hashFilters,
+      useHash: this.useHash
     });
 
   },
@@ -170,7 +172,8 @@ module.exports = Backbone.View.extend({
       label: label,
       model: new Backbone.Model(data),
       vent: this.vent,
-      hashFilters: this.hashFilters
+      hashFilters: this.hashFilters,
+      useHash: this.useHash
     });
 
   },
@@ -247,7 +250,7 @@ module.exports = Backbone.View.extend({
 
   resetFilters: function () {
 
-    this.createHash();
+    if (this.useHash) this.createHash();
 
     var filters = this.formatFilters();
 

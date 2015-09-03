@@ -43,7 +43,7 @@ module.exports = Views.Filter.extend({
     Views.Filter.prototype.render.call(this);
     this.input = this.$el.find("input[name=q]");
 
-    if (this.hashFilters.length) {
+    if (this.useHash && this.hashFilters.length) {
       var q = this.hashFilters[0].replace("search-", "").replace("-", " ");
       this.input.val(q)
       this.searchByKeyword();
