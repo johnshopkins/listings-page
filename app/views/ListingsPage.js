@@ -1,6 +1,5 @@
 /* global require: false */
 /* global module: false */
-/* global modernBrowser: false */
 
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
@@ -82,6 +81,7 @@ module.exports = Backbone.View.extend({
     this.views = options.views;
     this.appName = options.appName;
     this.tabIndex = options.tabIndex || {};
+    this.modernBrowser = typeof options.modernBrowserCheck !== "undefined" ? options.modernBrowserCheck : true;
 
     // save off a copy of the events object to scope the vent object
     // example of why: there are filters on the events page and in
@@ -164,7 +164,7 @@ module.exports = Backbone.View.extend({
   render: function () {
 
     // do not render filters or init isotope if this is not a modern browser
-    if (typeof modernBrowser !== "undefined" && !modernBrowser) return;
+    if (!this.modernBrowser) return;
 
     // create filters view
     var filterData = getScriptData(this.filtersContainer);
