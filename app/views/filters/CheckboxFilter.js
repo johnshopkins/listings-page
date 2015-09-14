@@ -54,6 +54,8 @@ var CheckboxFilter = Views.Filter.extend({
     e.stopPropagation();
     // e.preventDefault(); // do not use this -- it prevents < IE8 from checking the checkbox
 
+    if ($(e.target).is("a")) e.preventDefault();
+
     var checked = this.input.prop("checked");
 
     if (checked) {
@@ -70,6 +72,8 @@ var CheckboxFilter = Views.Filter.extend({
 
     e.stopPropagation();
     // e.preventDefault(); // do not use this -- it prevents < IE8 from checking the checkbox
+
+    if ($(e.target).is("a")) e.preventDefault();
 
     Views.Filter.prototype.onChange.call(this, e);
 
