@@ -30,6 +30,8 @@ module.exports = Views.FilterSet.extend({
     this.listenTo(this.vent, "filters:add", this.addFilter);
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
 
+    if (this.hashFilters.length === 0) this.clearView.activate();
+
   },
 
   addFilter: function (group, filter, slug) {
