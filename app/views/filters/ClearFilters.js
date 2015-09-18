@@ -39,6 +39,18 @@ module.exports = Backbone.View.extend({
     this.$el.append(this.template({ text: this.text }));
     return this;
 
+  },
+
+  activate: function () {
+
+    this.$el.addClass("active");
+
+  },
+
+  deactivate: function () {
+
+    this.$el.removeClass("active");
+
   }
 
 });

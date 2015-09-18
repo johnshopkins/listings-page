@@ -41,8 +41,6 @@ module.exports = Views.Filter.extend({
 
     var active = this.model.get("active");
 
-    console.log(active);
-
     if (!active) {
       this.activateFilter();
     } else {
