@@ -17,7 +17,7 @@ var Views = {
 module.exports = Views.FilterSet.extend({
 
   view: Views.ButtonFilter,
-  clearLocation: "before"
+  clearLocation: "before",
   clearText: "show all"
 
 });

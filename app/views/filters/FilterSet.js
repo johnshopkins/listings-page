@@ -16,6 +16,7 @@ var Views = {
 module.exports = Backbone.View.extend({
 
   tagName: "fieldset",
+  clearLocation: "after",
   clearText: "clear",
 
   initialize: function (options) {
@@ -76,8 +77,11 @@ module.exports = Backbone.View.extend({
 
     if (this.collection) {
 
+      if (this.clearLocation === "before") this.$el.append(this.clearView.render().el);
+
       this.collection.each(this.append, this);
-      this.$el.append(this.clearView.render().el);
+
+      if (this.clearLocation === "after") this.$el.append(this.clearView.render().el);
 
     } else if (this.model) {
 
