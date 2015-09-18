@@ -8,6 +8,7 @@ var Backbone  = require("../../shims/backbone");
 var analytics = require("../../lib/analytics");
 
 var Views = {
+  button: require("./filters/ButtonFilterSet"),
   checkbox: require("./filters/CheckboxFilterSet"),
   search: require("./filters/SearchFilterSet")
 };
@@ -30,6 +31,9 @@ module.exports = Backbone.View.extend({
   initialize: function (options) {
 
     this.data = options.data;
+
+    if (!this.data) return;
+
     this.vent = options.vent;
     this.filtersContainer = options.filtersContainer;
     this.tabIndex = options.tabIndex;
@@ -141,6 +145,26 @@ module.exports = Backbone.View.extend({
   onSubmit: function (e) {
 
     e.preventDefault();
+
+  },
+
+  createButton: function (data, label) {
+
+    // convert each button data to a backbone model
+    var self = this;
+    var models = $.map(data.options, function (attributes, id) {
+      attributes.tabIndex = self.tabIndex.button || "input";
+      return new Backbone.Model(attributes);
+    });
+
+    // create a button view
+    return new Views.button({
+      label: label,
+      collection: new Backbone.Collection(models),
+      vent: this.vent,
+      hashFilters: this.hashFilters,
+      useHash: this.useHash
+    });
 
   },
 
