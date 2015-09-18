@@ -150,14 +150,14 @@ module.exports = Backbone.View.extend({
 
   initIsotope: function () {
 
-    this.imagesloaded = true;
-    this.listingsContainer.isotope(this.isotopeOptions);
-    this.listingsContainer.isotope("on", "arrangeComplete", this.onArrangeComplete.bind(this));
-
     // add the filters and toggle to the filters container
     this.filtersContainer
       .append(this.filtersToggle.render().el)
       .append(this.filtersForm.render().el);
+
+    this.imagesloaded = true;
+    this.listingsContainer.isotope(this.isotopeOptions);
+    this.listingsContainer.isotope("on", "arrangeComplete", this.onArrangeComplete.bind(this));
 
   },
 
