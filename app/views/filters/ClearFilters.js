@@ -23,6 +23,7 @@ module.exports = Backbone.View.extend({
   initialize: function (options) {
 
     this.group = options.group;
+    this.text = options.text;
 
   },
 
@@ -35,7 +36,7 @@ module.exports = Backbone.View.extend({
 
   render: function () {
 
-    this.$el.append(this.template());
+    this.$el.append(this.template({ text: this.text }));
     return this;
 
   }

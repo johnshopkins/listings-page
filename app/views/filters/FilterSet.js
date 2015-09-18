@@ -16,6 +16,7 @@ var Views = {
 module.exports = Backbone.View.extend({
 
   tagName: "fieldset",
+  clearText: "clear",
 
   initialize: function (options) {
 
@@ -30,7 +31,7 @@ module.exports = Backbone.View.extend({
     this.views = [];
 
     // view that controls the "clear" button
-    this.clearView = new Views.ClearFilters({ group: this.group });
+    this.clearView = new Views.ClearFilters({ group: this.group, text: this.clearText });
     this.listenTo(this.clearView, "filters:removeset", this.deactivateSet);
 
   },
