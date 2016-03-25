@@ -159,6 +159,9 @@ module.exports = Backbone.View.extend({
       .append(this.filtersToggle.render().el)
       .append(this.filtersForm.render().el);
 
+    // resort after adding filters (makes sure stamp is in the right location)
+    this.listingsContainer.isotope(this.isotopeOptions);
+
   },
 
   render: function () {
