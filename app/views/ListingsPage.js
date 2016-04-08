@@ -232,6 +232,13 @@ module.exports = Backbone.View.extend({
 
     this.listingsContainer.isotope("insert", items);
 
+    var self = this;
+    this.listingsContainer
+      .imagesLoaded()
+      .done(function () {
+        self.listingsContainer.isotope();
+      });
+
   },
 
   remove: function (items) {
