@@ -99,7 +99,7 @@ module.exports = Backbone.View.extend({
 
     // create the no results view
     this.noResultsView = new Views.NoResults();
-    this.listingsContainer.after(this.noResultsView.render().el);
+    this.listingsContainer.append(this.noResultsView.render().el);
 
     var self = this;
     this.listenTo(this.vent, "filters:reset", _.debounce(function (filters) {
