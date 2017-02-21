@@ -30,6 +30,14 @@ module.exports = Views.Filter.extend({
 
     this.elasticsearch = new Elasticsearch();
 
+    this.setElement(this.el);
+
+  },
+
+  setElement: function (el) {
+
+    Views.Filter.prototype.setElement.call(this, el);
+
     // add icon click event
     this.events["keydown input"] = "onKeyDown";
     this.events["focus input"] = "clearKeyword";

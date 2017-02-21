@@ -26,6 +26,14 @@ var CheckboxFilter = Views.Filter.extend({
     this.useHash = options.useHash;
     this.childViews = [];
 
+    this.setElement(this.el);
+
+  },
+
+  setElement: function (el) {
+
+    Views.Filter.prototype.setElement.call(this, el);
+
     // add icon click event
     this.events["click .toggle-expand"] = "iconClick";
 
