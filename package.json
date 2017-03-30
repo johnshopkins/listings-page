@@ -4,17 +4,25 @@
   "description": "The Backbone framework that provides the base for filterable listings.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter list"
+    "test": "mocha --reporter list"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:johnshopkins/listings-page.git"
+    "url": "git+ssh://git@github.com/johnshopkins/listings-page.git"
   },
-  "author": [
-    "Jen Wachter"
-  ],
+  "author": "",
   "dependencies": {
-    "imagesloaded": "git+ssh://git@github.com:johnshopkins/imagesloaded.git"
+    "imagesloaded": "git+ssh://git@github.com/johnshopkins/imagesloaded.git"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "gitHead": "45a0df58ff2adf4bed80c7e2f2869bff348b01bc",
+  "readme": "# Listings Page\nThe Backbone framework that provides the base for filterable listings.\n",
+  "bugs": {
+    "url": "https://github.com/johnshopkins/listings-page/issues"
+  },
+  "homepage": "https://github.com/johnshopkins/listings-page#readme",
+  "_id": "listings-page@0.0.1",
+  "_shasum": "b7e660d1f832027542ba9537c1656d47cf5afd6f",
+  "_from": "git+ssh://git@github.com/johnshopkins/listings-page.git",
+  "_resolved": "git+ssh://git@github.com/johnshopkins/listings-page.git#45a0df58ff2adf4bed80c7e2f2869bff348b01bc"
 }

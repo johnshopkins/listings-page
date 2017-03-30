@@ -9,8 +9,7 @@ var analytics = require("../../lib/analytics");
 
 var Views = {
   button: require("./filters/ButtonFilterSet"),
-  checkbox: require("./filters/CheckboxFilterSet"),
-  search: require("./filters/SearchFilterSet")
+  checkbox: require("./filters/CheckboxFilterSet")
 };
 
 /**
@@ -69,7 +68,6 @@ module.exports = Backbone.View.extend({
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
     this.listenTo(this.vent, "filters:removegroup", this.removeFilterGroup);
     this.listenTo(this.vent, "filters:trackevent", this.trackEvent);
-    this.listenTo(this.vent, "filters:tracksearch", this.trackSearch);
 
   },
 
@@ -80,12 +78,6 @@ module.exports = Backbone.View.extend({
       eventAction: "Click filter",
       eventLabel: filterName
     });
-
-  },
-
-  trackSearch: function (url) {
-
-    analytics.trackPageview({ page: url });
 
   },
 
@@ -181,20 +173,6 @@ module.exports = Backbone.View.extend({
     return new Views.checkbox({
       label: label,
       collection: new Backbone.Collection(models),
-      vent: this.vent,
-      hashFilters: this.hashFilters,
-      useHash: this.useHash
-    });
-
-  },
-
-  createSearch: function (data, label) {
-
-    data.tabIndex = this.tabIndex.search || "input";
-
-    return new Views.search({
-      label: label,
-      model: new Backbone.Model(data),
       vent: this.vent,
       hashFilters: this.hashFilters,
       useHash: this.useHash
