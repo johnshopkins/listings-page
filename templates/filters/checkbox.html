@@ -1,5 +1,5 @@
 <div class="form-field <%= slug %>">
   <input type="checkbox" value=".<%= slug %>" id="<%= slug %>-<%= uniqueId %>" <% if (checked) { %>checked="checked"<% } %> <% if (tabIndex === "label") { %>tabIndex="-1"<% } %>>
-  <label for="<%= slug %>-<%= uniqueId %>"><% if (tabIndex === "label") { %><a href="#"><% } %><% if (typeof icon !== "undefined") { %><i class="fa <%= icon %>"></i> <% } %><%= name %><% if (tabIndex === "label") { %></a><% } %></label>
-  <% if (parentElement) { %><a href="#" class="toggle-expand"><i class="fa fa-plus-square-o"></i></a><% } %>
+  <label for="<%= slug %>-<%= uniqueId %>"><% if (tabIndex === "label") { %><a href="#"><% } %><% if (typeof icon !== "undefined") { %><i class="fa <%= icon %>" aria-hidden="true"></i> <% } %><%= name %><% if (tabIndex === "label") { %></a><% } %></label>
+  <% if (parentElement) { %><a href="#" class="toggle-expand"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span class="visuallyhidden">Expand <%= name %></span></a><% } %>
 </div>
