@@ -50,6 +50,12 @@ var CheckboxFilter = Views.Filter.extend({
     this.toggleIcon.toggleClass("fa-minus-square-o fa-plus-square-o");
     this.childFilters.toggleClass("open");
 
+    if (this.childFilters.hasClass("open")) {
+      this.childFilters.removeAttr("aria-hidden");
+    } else {
+      this.childFilters.attr("aria-hidden", true);
+    }
+
   },
 
   /**
@@ -159,7 +165,10 @@ var CheckboxFilter = Views.Filter.extend({
       this.toggleIcon = this.$el.find(".toggle-expand i");
 
       // create .child-filters div to store filters in
-      this.childFilters = $("<div />").addClass("child-filters");
+      this.childFilters = $("<div />")
+        .addClass("child-filters")
+        .attr("aria-hidden", true);
+
       this.$el.append(this.childFilters);
 
       var self = this;
