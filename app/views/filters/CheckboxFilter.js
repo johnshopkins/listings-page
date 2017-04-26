@@ -38,7 +38,7 @@ var CheckboxFilter = Views.Filter.extend({
     this.events["click .toggle-expand"] = "iconClick";
 
     if (this.model.get("tabIndex") === "label") {
-      this.events["click label"] = "labelClick";
+      this.events["click button"] = "buttonClick";
     }
 
   },
@@ -57,12 +57,9 @@ var CheckboxFilter = Views.Filter.extend({
    * but this function reacts to the clicking
    * (or tabbing to and activating) of the label.
    */
-  labelClick: function (e) {
+  buttonClick: function (e) {
 
     e.stopPropagation();
-    // e.preventDefault(); // do not use this -- it prevents < IE8 from checking the checkbox
-
-    if ($(e.target).is("a")) e.preventDefault();
 
     var checked = this.input.prop("checked");
 
@@ -79,9 +76,6 @@ var CheckboxFilter = Views.Filter.extend({
   onChange: function (e) {
 
     e.stopPropagation();
-    // e.preventDefault(); // do not use this -- it prevents < IE8 from checking the checkbox
-
-    if ($(e.target).is("a")) e.preventDefault();
 
     Views.Filter.prototype.onChange.call(this, e);
 
