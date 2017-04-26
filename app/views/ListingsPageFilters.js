@@ -184,6 +184,12 @@ module.exports = Backbone.View.extend({
 
     this.$el.toggleClass("closed");
 
+    // if (this.$el.hasClass("closed")) {
+    //   this.$el.attr("aria-hidden", true);
+    // } else {
+    //   this.$el.removeAttr("aria-hidden");
+    // }
+
   },
 
   /**
@@ -334,6 +340,8 @@ module.exports = Backbone.View.extend({
   },
 
   render: function () {
+
+    // this.$el.attr("aria-hidden", true);
 
     var self = this;
     _.each(this.filterViews, function (filter) {
