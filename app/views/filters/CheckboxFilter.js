@@ -50,10 +50,16 @@ var CheckboxFilter = Views.Filter.extend({
     this.toggleIcon.toggleClass("fa-minus-square-o fa-plus-square-o");
     this.childFilters.toggleClass("open");
 
+    var newScreenReaderText;
+
     if (this.childFilters.hasClass("open")) {
       this.childFilters.removeAttr("aria-hidden");
+      newScreenReaderText = this.screenReaderText.text().replace("Expand", "Collapse");
+      this.screenReaderText.text(newScreenReaderText);
     } else {
       this.childFilters.attr("aria-hidden", true);
+      newScreenReaderText = this.screenReaderText.text().replace("Collapse", "Expand");
+      this.screenReaderText.text(newScreenReaderText);
     }
 
   },
@@ -163,6 +169,8 @@ var CheckboxFilter = Views.Filter.extend({
 
       // save off icon for later toggling
       this.toggleIcon = this.$el.find(".toggle-expand i");
+      this.screenReaderText = this.$el.find(".toggle-expand .visuallyhidden");
+      console.log(this.screenReaderText);
 
       // create .child-filters div to store filters in
       this.childFilters = $("<div />")
