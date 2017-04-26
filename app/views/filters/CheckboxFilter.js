@@ -170,7 +170,6 @@ var CheckboxFilter = Views.Filter.extend({
       // save off icon for later toggling
       this.toggleIcon = this.$el.find(".toggle-expand i");
       this.screenReaderText = this.$el.find(".toggle-expand .visuallyhidden");
-      console.log(this.screenReaderText);
 
       // create .child-filters div to store filters in
       this.childFilters = $("<div />")
