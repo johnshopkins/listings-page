@@ -6,6 +6,7 @@ var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
 
 var analytics = require("../../lib/analytics");
+var WindowResizeWatcher = require("window-resize-watcher");
 
 var Views = {
   button: require("./filters/ButtonFilterSet"),
@@ -48,6 +49,9 @@ module.exports = Backbone.View.extend({
     // hash slugs
     this.slugs = {};
 
+    // breakpoint
+    this.breakpoint = "hand";
+
     var self = this;
     this.filterViews = $.map(this.data, function (data, label) {
 
@@ -63,6 +67,10 @@ module.exports = Backbone.View.extend({
 
     });
 
+    var resizer = new WindowResizeWatcher(this.vent);
+    $(window).on("resize", resizer.handleResize.bind(resizer));
+
+    this.listenTo(this.vent, "winresize:done", this.updateBreakpoint);
     this.listenTo(this.vent, "filters:toggle", this.toggleDisplay);
     this.listenTo(this.vent, "filters:add", this.addFilter);
     this.listenTo(this.vent, "filters:remove", this.removeFilter);
@@ -180,15 +188,27 @@ module.exports = Backbone.View.extend({
 
   },
 
+  updateBreakpoint: function () {
+
+    this.breakpoint = $("#breakpoint .width :visible").attr("class");
+
+    if ($.inArray(this.breakpoint, ["hand", "lap"]) > -1 && this.$el.hasClass("closed")) {
+      this.$el.attr("aria-hidden", true);
+    } else {
+      this.$el.removeAttr("aria-hidden");
+    }
+
+  },
+
   toggleDisplay: function () {
 
     this.$el.toggleClass("closed");
 
-    // if (this.$el.hasClass("closed")) {
-    //   this.$el.attr("aria-hidden", true);
-    // } else {
-    //   this.$el.removeAttr("aria-hidden");
-    // }
+    if ($.inArray(this.breakpoint, ["hand", "lap"]) > -1 && this.$el.hasClass("closed")) {
+      this.$el.attr("aria-hidden", true);
+    } else {
+      this.$el.removeAttr("aria-hidden");
+    }
 
   },
 
@@ -341,7 +361,11 @@ module.exports = Backbone.View.extend({
 
   render: function () {
 
-    // this.$el.attr("aria-hidden", true);
+    this.breakpoint = $("#breakpoint .width :visible").attr("class");
+
+    if ($.inArray(this.breakpoint, ["hand", "lap"]) > -1) {
+      this.$el.attr("aria-hidden", true);
+    }
 
     var self = this;
     _.each(this.filterViews, function (filter) {
