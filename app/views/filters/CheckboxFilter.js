@@ -38,7 +38,7 @@ var CheckboxFilter = Views.Filter.extend({
     this.events["click .toggle-expand"] = "iconClick";
 
     if (this.model.get("tabIndex") === "label") {
-      this.events["click button"] = "buttonClick";
+      this.events["click label button"] = "buttonClick";
     }
 
   },
