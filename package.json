@@ -12,7 +12,8 @@
   },
   "author": "",
   "dependencies": {
-    "imagesloaded": "git+ssh://git@github.com/johnshopkins/imagesloaded.git"
+    "imagesloaded": "git+ssh://git@github.com/johnshopkins/imagesloaded.git",
+    "window-resize-watcher": "git+ssh://git@github.com/johnshopkins/window-resize-watcher.git"
   },
   "readmeFilename": "README.md",
   "gitHead": "45a0df58ff2adf4bed80c7e2f2869bff348b01bc",
