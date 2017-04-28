@@ -38,6 +38,7 @@ module.exports = Backbone.View.extend({
     this.filtersContainer = options.filtersContainer;
     this.tabIndex = options.tabIndex;
     this.appName = options.appName;
+    this.labelStyle = options.labelStyle;
     this.useHash = typeof options.useHash === "undefined" ? true : options.useHash;
 
     this.initQueryString();
@@ -154,6 +155,7 @@ module.exports = Backbone.View.extend({
     var self = this;
     var models = $.map(data.options, function (attributes, id) {
       attributes.tabIndex = self.tabIndex.button || "input";
+      attributes.labelStyle = self.labelStyle;
       return new Backbone.Model(attributes);
     });
 
@@ -174,6 +176,7 @@ module.exports = Backbone.View.extend({
     var self = this;
     var models = $.map(data.options, function (attributes, id) {
       attributes.tabIndex = self.tabIndex.checkbox || "input";
+      attributes.labelStyle = self.labelStyle;
       return new Backbone.Model(attributes);
     });
 

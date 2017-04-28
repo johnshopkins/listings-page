@@ -50,7 +50,8 @@ module.exports = Backbone.View.extend({
    *   listings: $(".obejcts"),  // optional. Defaults to $(".obejcts")
    *   models: {},               // required. Object models, matching object types
    *   views: {}                 // required. Object views, matching object types
-   *   appName: ""               // options. Used for Google Analytics Event tracking as the "event category"
+   *   appName: ""               // optional. Used for Google Analytics Event tracking as the "event category"
+   *   labelStyle: "default"     // optional. Set to "button" for button labels like on jhu.edu/academics
    * }
    *
    * pass two divs into the view (filters and listings) if
@@ -80,6 +81,7 @@ module.exports = Backbone.View.extend({
     this.models = options.models;
     this.views = options.views;
     this.appName = options.appName;
+    this.labelStyle = options.labelStyle || "default";
     this.tabIndex = options.tabIndex || {};
     this.modernBrowser = typeof options.modernBrowserCheck !== "undefined" ? options.modernBrowserCheck : true;
 
@@ -176,7 +178,8 @@ module.exports = Backbone.View.extend({
       vent: this.vent,
       filtersContainer: this.filtersContainer,
       tabIndex: this.tabIndex,
-      appName : this.appName
+      appName: this.appName,
+      labelStyle: this.labelStyle
     });
 
     // init isotope when all images are loaded

@@ -12,7 +12,13 @@
     <% if (typeof icon !== "undefined") { %>
       <i class="fa <%= icon %>" aria-hidden="true"></i>
     <% } %>
-    <button><%= name %></button>
+    <% if (labelStyle == "button") { %>
+      <button>
+    <% } %>
+    <%= name %>
+    <% if (labelStyle == "button") { %>
+    </button>
+    <% } %>
   </label>
 
   <% if (parentElement) { %>
