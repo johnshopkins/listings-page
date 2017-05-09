@@ -9,11 +9,11 @@
     <% } %>
   >
   <label for="<%= slug %>-<%= uniqueId %>">
-    <% if (typeof icon !== "undefined") { %>
-      <i class="fa <%= icon %>" aria-hidden="true"></i>
-    <% } %>
     <% if (labelStyle == "button") { %>
       <button>
+    <% } %>
+    <% if (typeof icon !== "undefined") { %>
+      <i class="fa <%= icon %>" aria-hidden="true"></i>
     <% } %>
     <%= name %>
     <% if (labelStyle == "button") { %>
