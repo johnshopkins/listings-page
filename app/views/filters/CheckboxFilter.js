@@ -119,7 +119,7 @@ var CheckboxFilter = Views.Filter.extend({
 
     this.children = this.model.get("children");
 
-    if (this.children) {
+    if (this.children && this.children.lengh > 0) {
       this.model.set("parentElement", true);
       this.$el.addClass("parent-level");
       this.open = false;
@@ -163,7 +163,7 @@ var CheckboxFilter = Views.Filter.extend({
     if (this.input.prop("checked")) this.activateFilter();
 
 
-    if (this.children) {
+    if (this.children && this.children.lengh > 0) {
 
       // create child filter views
 
