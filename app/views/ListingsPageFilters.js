@@ -90,10 +90,9 @@ module.exports = Backbone.View.extend({
     });
 
     dataLayer.push({
-      'event': 'filterClick',
-      'category': this.appName || 'Listings',
-      'action': 'Click filter',
-      'label': filterName
+      'event': 'listingsFilterClick',
+      'appName': this.appName || 'Listings',
+      'filterName': filterName
     });
 
   },
