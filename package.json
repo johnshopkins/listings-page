@@ -1,6 +1,6 @@
 {
   "name": "listings-page",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "The Backbone framework that provides the base for filterable listings.",
   "main": "index.js",
   "scripts": {
