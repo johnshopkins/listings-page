@@ -1,6 +1,7 @@
 /* global require: false */
 /* global module: false */
 /* global vent: false */
+/* gloal dataLayer: false */
 
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
@@ -86,6 +87,13 @@ module.exports = Backbone.View.extend({
       eventCategory: this.appName || "Listings",
       eventAction: "Click filter",
       eventLabel: filterName
+    });
+
+    dataLayer.push({
+      'event': 'filterClick',
+      'category': this.appName || 'Listings',
+      'action': 'Click filter',
+      'label': filterName
     });
 
   },
