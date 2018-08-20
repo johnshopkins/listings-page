@@ -5,8 +5,6 @@
 
 var $ = require("../../shims/jquery");
 var Backbone  = require("../../shims/backbone");
-
-var analytics = require("../../lib/analytics");
 var WindowResizeWatcher = require("window-resize-watcher");
 
 var Views = {
@@ -82,12 +80,6 @@ module.exports = Backbone.View.extend({
   },
 
   trackEvent: function (filterName) {
-
-    analytics.trackEvent({
-      eventCategory: this.appName || "Listings",
-      eventAction: "Click filter",
-      eventLabel: filterName
-    });
 
     dataLayer.push({
       'event': 'listingsFilterClick',
